@@ -1,0 +1,47 @@
+<html>
+<body>
+<script language="javascript" type="text/javascript">  
+// looping the triangle //
+    var line  ="";
+    while (line.length<7) {
+        line += "#";
+        document.writeln(line + "<br>");
+    };
+// fizzbuzz //
+     for (var i=1; i<=100; i++) {
+        if (i % 3 === 0 && i % 5 === 0) {
+            document.writeln("FizzBuzz! <br>");
+        }
+        else if (i % 5 === 0) {
+            document.writeln("Buzz <br>");  
+        }
+        else if (i % 3 === 0) {
+            document.writeln("Fizz <br>");
+        }  
+        else {
+           document.writeln(i + "<br>");
+        }    
+    };
+// chess board //
+var line = "";
+   var size = Number(prompt('Give "size" of the chess board','8'));
+    function chessboard(size) {
+        for (var i=0; i<size; i++) {
+            line = "";
+            for (var j=0; j<size; j++) {
+               if((i+j) % 2 ===0)
+                   line += " "
+                else
+                    line += "#"
+                }
+            console.log(line);
+            }   
+        };
+    chessboard(size);
+    </script>
+    <br><br>
+<input type="button" value="Refresh Page" onClick="window.location.reload()">
+    <br>
+    <p>Chessboard in console.</p>
+</body>
+</html> 
