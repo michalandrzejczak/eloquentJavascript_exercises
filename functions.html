@@ -1,0 +1,74 @@
+<html>
+<body>
+<h3>Minimum</h3>
+<script language="javascript" type="text/javascript">  
+// minimum //
+function  min(a,b) {
+    if (a>b) 
+        return b
+    else if (a<b)
+        return a
+    else
+        return "none, both are equal"
+};
+var a = Number(prompt("Give value a", "0"));
+var b = Number(prompt("Give value b", "0"));
+document.writeln("Comparing " + a + " and " + b + "<br>");
+document.writeln("Lower is value: " + min(a,b));
+</script>
+<br>
+<h3>Recursion</h3>
+<script language="javascript" type="text/javascript">  
+// Recursion //
+function isEven(number) {
+	if (number===0)
+		return true
+	else if (number===1)
+		return false
+	else
+		return isEven(number-2)
+}
+var number = -1;
+number = Number(prompt("Give number to check its parity","0"));
+while (number <= 0 || Number.isInteger(number) === false) {
+	alert("Number should be integer and greater than zero");
+	number = Number(prompt("Give number to check its parity","0"));
+}
+
+document.writeln("The number " + number + " is even? " + isEven(number));
+</script>
+<br>
+<h3>Bean counting</h3>
+<script language="javascript" type="text/javascript">  
+// Bean counting //
+function CountBs(str) {
+	var Bs = 0;
+	for (var i = 0; i <= str.length; i++) {
+		if (str.charAt(i) === "B") {
+			Bs++;
+		}	
+	};
+	return Bs;
+};
+var str = prompt("Give a string to count Bs","'Boom!' shouted Ben and Bobby");
+document.writeln(str + "<br>");
+document.writeln("There are " + CountBs(str) + " Bs in the first string. <br><br>");
+	function countChar(str2, char) {
+	var chars = 0;
+	for (var i = 0; i <= str.length; i++) {
+		if (str2.charAt(i) === char) {
+			chars++;
+		}	
+	};
+	return chars;	
+	}
+var str2 = prompt("Give a string to count specific char");
+var char = prompt("Give specific char to be counted","a");
+document.writeln(str2 + "<br>");
+document.writeln("There are " + countChar(str2,char) + " " + char + "-s in the second string.");
+</script>	
+<div style="float:right">
+    <input type="button" value="Refresh Page" onClick="window.location.reload()">
+</div>
+</body>
+</html> 
