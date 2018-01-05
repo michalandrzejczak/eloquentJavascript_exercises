@@ -1,0 +1,35 @@
+<html>
+<body>
+<h3>The sum of a range</h3>
+<script language="javascript" type="text/javascript">  
+// the sum of a range //
+var rng = [];
+	function range(start,end,step=1){
+		var i=0;
+		rng = [];
+		rng[0]=start;
+		for (var i=1; i<=Math.abs((start-end)/step); i++){
+			rng[i]=rng[i-1]+step;
+		}	
+		return rng
+	};
+	function sum(rng) {
+		var sm = 0;
+		for (var i=0; i<rng.length; i++) {
+			sm += rng[i]
+		}
+	return sm
+	};
+</script>	
+<div style="float:left">
+	<input type="button" value="range(1,10)" onClick='sm=0, document.getElementById("1.1").innerHTML = "range: " + range(1,10), document.getElementById("1.2").innerHTML = "sum of the range: " + sum(rng);'>
+	<input type="button" value="range(1,10,2)" onClick='sm=0, document.getElementById("1.1").innerHTML = "range: " + range(1,10,2), document.getElementById("1.2").innerHTML = "sum of the range: " + sum(rng);'>
+	<input type="button" value="range(5,2,-1)" onClick='sm=0, document.getElementById("1.1").innerHTML = "range: " + range(5,2,-1), document.getElementById("1.2").innerHTML = "sum of the range: " + sum(rng);'>
+<p id="1.1"></p>
+<p id="1.2"></p>
+</div>
+<div style="float:right">
+	<input type="button" value="Refresh Page" onClick="window.location.reload()">
+</div>
+</body>
+</html> 
