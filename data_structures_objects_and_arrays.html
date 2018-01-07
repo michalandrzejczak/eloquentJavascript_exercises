@@ -28,6 +28,22 @@ var rng = [];
 <p id="1.1"></p>
 <p id="1.2"></p>
 </div>
+<br><br><br><br><br>
+<h3>Reversing an array</h3>
+<p id="2.1"></p>
+<script language="javascript" type="text/javascript">
+// Reversing an array //
+var array=['1','2','3','4','5','6','7'];
+document.getElementById("2.1").innerHTML = 'Array: ' + array;
+function reverseArrayinPlace(array) {
+	var newArray=[];
+	for (var i=0; i<=array.length-1; i++) {
+		newArray[i]=array[(array.length-1)-i];
+	}
+	return newArray;
+};
+</script>
+<input type="button" value="Reverse array in Place" onClick='document.getElementById("2.1").innerHTML = "New array: " + reverseArrayinPlace(array);'>
 <div style="float:right">
 	<input type="button" value="Refresh Page" onClick="window.location.reload()">
 </div>
