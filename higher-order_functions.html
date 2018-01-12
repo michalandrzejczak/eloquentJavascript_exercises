@@ -11,7 +11,7 @@ document.getElementById("1.2").innerHTML = ("Flattened array: " + arrays.reduce(
 </script>
 <li><h3>Mother-child age difference</h3></li>
 <p><code>ancestry.js</code> file is needed. <i>Copy/paste in console:</i></p>
-<p><pre>var ancestry = JSON.parse(ANCESTRY_FILE);
+<p><blockquote><pre>var ancestry = JSON.parse(ANCESTRY_FILE);
 function average(array) {
   function plus(a, b) { return a + b; }
   return array.reduce(plus) / array.length;
@@ -22,21 +22,67 @@ ancestry.forEach(function(person) {
 });
 var knownMother = ancestry.filter(person => byName[person.mother] != null);
 var ageDiff = knownMother.map(person => person.born - byName[person.mother].born);
-console.log(average(ageDiff));</pre></p>
+console.log(average(ageDiff));</pre></blockquote></p>
 <script language="javascript" type="text/javascript" src="ancestry.js">
 // Mother-child age difference //
-var ancestry = JSON.parse(ANCESTRY_FILE)
+	// paste in console code from html file //
+</script>
+<li><h3>Historical life expectancy</h3></li>
+<p id ="ageAverage">
+<code>ancestry.js</code> file is needed. <i>Copy/paste in console:</i>
+<blockquote><pre>var ancestry = JSON.parse(ANCESTRY_FILE);
 function average(array) {
   function plus(a, b) { return a + b; }
   return array.reduce(plus) / array.length;
 }
-var byName = {};
-ancestry.forEach(function(person) {
-  byName[person.name] = person;
-});
-var knownMother = ancestry.filter(person => byName[person.mother] != null);
-var ageDiff = knownMother.map(person => person.born - byName[person.mother].born);
-console.log(average(ageDiff));
+function groupBy(array, fnOf) {
+  var groups = {};
+  array.forEach(function(element) {
+    var groupName = fnOf(element);
+    if (groupName in groups)
+      groups[groupName].push(element);
+    else
+      groups[groupName] = [element];
+  });
+  return groups;
+}
+var sorted = groupBy(ancestry, function(person) {
+  return Math.ceil(person.died / 100);
+});	
+var averageAgeString = "";
+for (var century in sorted) {
+	var age = sorted[century].map(person => person.died - person.born);
+	averageAgeString += "Age average in " + century + " century was: " + average(age) + "&lt;br&gt;";
+};
+document.getElementById("ageAverage").innerHTML = (averageAgeString);</pre></blockquote>
+</p>
+<script language="javascript" type="text/javascript" src="ancestry.js">
+// Historical life expectancy //
+var ancestry = JSON.parse(ANCESTRY_FILE);
+function average(array) {
+  function plus(a, b) { return a + b; }
+  return array.reduce(plus) / array.length;
+}
+function groupBy(array, fnOf) {
+  var groups = {};
+  array.forEach(function(element) {
+    var groupName = fnOf(element);
+    if (groupName in groups)
+      groups[groupName].push(element);
+    else
+      groups[groupName] = [element];
+  });
+  return groups;
+}
+var sorted = groupBy(ancestry, function(person) {
+  return Math.ceil(person.died / 100);
+});	
+var averageAgeString = "";
+for (var century in sorted) {
+	var age = sorted[century].map(person => person.died - person.born);
+	averageAgeString += "Age average in " + century + " century was: " + average(age) + "<br>";
+};
+document.getElementById("ageAverage").innerHTML = (averageAgeString);
 </script>
 </ol>
 <div style="float:right">
