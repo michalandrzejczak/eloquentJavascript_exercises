@@ -317,3 +317,40 @@ var valley = new LifelikeWorld(
    "O": SmartPlantEater,
    "*": Plant}
 );
+function Tiger() {
+	this.energy = 100;
+};
+Tiger.prototype.act = function (context) {
+	var space = context.find(" ");
+	if (this.energy > 150 && space)
+		return {type: "reproduce", direction: space};
+	var food = context.findAll("O");
+	if (food.length > 0)
+		return {type: "eat", direction: randomElement(food)}
+	if (space)
+		return {type: "move", direction: space}
+};
+var worldWithPredators = new LifelikeWorld(
+  ["####################################################",
+   "#                 ####         ****              ###",
+   "#   *  @  ##                    #  ##       OO    ##",
+   "# O *    ##        O O                 ****       *#",
+   "#       ##*               O        ########## O   *#",
+   "# O    ##***  *O        ****      @     **       **#",
+   "#* **  #  *  ***      ######                    O**#",
+   "#* **  #      *               #   *              **#",
+   "#     ##             *    O   #  ***          ######",
+   "#*            @               #   *        O  #    #",
+   "#*                  O     ###                   ** #",
+   "###          ****          ***                  ** #",
+   "#       O                        @         O       #",
+   "#   *     ##  ##  ##                   ###      *  #",
+   "#   **         #          O   *       #####  O     #",
+   "##  **  O   O  #       ***  ***        ###      ** #",
+   "###              @#   *****    O        @      ****#",
+   "####################################################"],
+  {"#": Wall,
+   "@": Tiger,
+   "O": SmartPlantEater, // from previous exercise
+   "*": Plant}
+);
