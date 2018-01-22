@@ -3,7 +3,7 @@
 <ol>
 <li><h3>Retry</h3></li>
 <p>Reliable multiplication of 8 and 7 by using <code>primitiveMultiply(a, b)</code> function, that gives 50% of success. Use pausing in debugger to see the flow and keep refreshing the page.</p>
-	<span id = "1" style="background-color: #ff9393"></p>
+<span id = "1" style="background-color: #ff9393"></p>
 <script language="javascript" type="text/javascript">
 function MultiplicatorUnitFailure() {};
 function primitiveMultiply(a, b) {
@@ -22,6 +22,40 @@ function reliableMultiply(a, b) {
 return result;
 };		  
 document.getElementById("1").innerHTML =   "Result: " + reliableMultiply(8, 7);
+</script>
+<li><h3>The locked box</h3></li>
+<p>Try in the console:</p>
+<pre>
+box.content
+<i><font color="red">// Uncaught Error: Locked! at Object.get content [as content]</font></i>
+withBoxUnlocked(function() {
+  box.content.push("gold piece");
+});
+box.content
+<i><font color="red">// Uncaught Error: Locked! at Object.get content [as content]</font></i>
+box.unlock();
+box.content
+<i><font color="green">// -> ["gold piece"]</font></i>
+box.lock();
+box.content
+<i><font color="red">// Uncaught Error: Locked! at Object.get content [as content]</font></i>
+</pre>
+<script language="javascript" type="text/javascript">
+var box = {
+  locked: true,
+  unlock: function() { this.locked = false; },
+  lock: function() { this.locked = true;  },
+  _content: [],
+  get content() {
+    if (this.locked) throw new Error("Locked!");
+    return this._content;
+  }
+};
+function withBoxUnlocked(body) {
+	box.unlock();
+	try { return body() } 
+	finally { box.lock() }
+};
 </script>
 </ol>
 <div style="float:right">
