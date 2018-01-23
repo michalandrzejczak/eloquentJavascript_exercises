@@ -1,0 +1,55 @@
+<html>
+<body style="font-family: calibri">
+<ol>
+<li><h3>Regexp golf</h3></li>
+<p>No output below means that every match in the exercise has been done properly.</p>
+<hr>
+<script language="javascript" type="text/javascript">
+// function verify has been given //	
+	function verify(regexp, yes, no) {
+  // Ignore unfinished exercises
+  if (regexp.source == "...") return;
+  yes.forEach(function(s) {
+    if (!regexp.test(s))
+      document.writeln("Failure to match '" + s + "'<br>");
+  });
+  no.forEach(function(s) {
+    if (regexp.test(s))
+      document.writeln("Unexpected match for '" + s + "'\<br>");
+  });
+}
+// the task is to construct proper regular expressions //	
+// no output means that every match has been done properly //
+verify(/ca[rt]/,
+       ["my car", "bad cats"],
+       ["camper", "high art"]);
+verify(/pr?op/,
+       ["pop culture", "mad props"],
+       ["plop"]);
+
+verify(/ferr(et|y|ari)/,
+       ["ferret", "ferry", "ferrari"],
+       ["ferrum", "transfer A"]);
+
+verify(/ious\b/,
+       ["how delicious", "spacious room"],
+       ["ruinous", "consciousness"]);
+
+verify(/\s[.,:;]/,
+       ["bad punctuation ."],
+       ["escape the dot"]);
+
+verify(/\w{7,}/,
+       ["hottentottententen"],
+       ["no", "hotten totten tenten"]);
+
+verify(/\b[^e\W]+\b/,
+       ["red platypus", "wobbling nest"],
+       ["earth bed", "learning ape"]);
+</script>
+</ol>
+<div style="float:right">
+<input type="button" value="Refresh Page" onClick="window.location.reload()">
+</div>
+</body>
+</html> 
