@@ -47,6 +47,15 @@ verify(/\b[^e\W]+\b/,
        ["red platypus", "wobbling nest"],
        ["earth bed", "learning ape"]);
 </script>
+<li><h3>Quoting style</h3></li>
+<p><code>var text = "'I'm the cook,' he said, 'it's my job.'";</code><br>
+Changing quoting marks:
+</p>
+<p id="2"></p>
+<script language="javascript" type="text/javascript">
+var text = "'I'm the cook,' he said, 'it's my job.'";
+document.getElementById("2").innerHTML = text.replace(/(^|\W)'|'(\W|$)/g, '$1"$2');
+</script>
 </ol>
 <div style="float:right">
 <input type="button" value="Refresh Page" onClick="window.location.reload()">
