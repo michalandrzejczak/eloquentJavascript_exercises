@@ -56,6 +56,27 @@ Changing quoting marks:
 var text = "'I'm the cook,' he said, 'it's my job.'";
 document.getElementById("2").innerHTML = text.replace(/(^|\W)'|'(\W|$)/g, '$1"$2');
 </script>
+<li><h3>Numbers again</h3></li>
+<pre>Matching: ["1", "-1", "+15", "1.55", ".5", "5.", "1.3e2", "1E-4", "1e+12"]
+Not accepting: ["1a", "+-1", "1.2.3", "1+1", "1e4.5", ".5.", "1f5", "."]
+ </pre>
+<p>No output below means that every match in the exercise has been done properly.</p>
+<hr>
+<script language="javascript" type="text/javascript">
+// the task is to construct proper regular expression as var number //	
+// no output means that every match has been done properly //
+var number = /^(\+|-|)(\d+(\.\d*)?|\.\d+)([eE](\+|-|)\d+)?$/;
+["1", "-1", "+15", "1.55", ".5", "5.", "1.3e2", "1E-4",
+ "1e+12"].forEach(function(s) {
+  if (!number.test(s))
+    document.writeln("Failed to match '" + s + "'<br>");
+});
+["1a", "+-1", "1.2.3", "1+1", "1e4.5", ".5.", "1f5",
+ "."].forEach(function(s) {
+  if (number.test(s))
+    document.writeln("Incorrectly accepted '" + s + "'<br>");
+});
+</script>
 </ol>
 <div style="float:right">
 <input type="button" value="Refresh Page" onClick="window.location.reload()">
