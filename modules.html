@@ -1,0 +1,23 @@
+<html>
+<body style="font-family: calibri">
+<ol>
+<li><h3>Month names</h3></li>
+<code>month.name(3)  :</code><br/>
+<span id ="1.1"></span><br/>
+<code>month.number("October")  :</code><br/>
+<span id ="1.2"></span><br/>
+<script language="javascript" type="text/javascript">
+(function(exports) {
+	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	exports.name = function(number) { return months[number] };
+	exports.number = function(name) { return months.indexOf(name) };
+})(this.month = {});
+document.getElementById("1.1").innerHTML = month.name(3);
+document.getElementById("1.2").innerHTML = month.number("October");
+</script>
+</ol>
+<div style="float:right">
+<input type="button" value="Refresh Page" onClick="window.location.reload()">
+</div>
+</body>
+</html> 
