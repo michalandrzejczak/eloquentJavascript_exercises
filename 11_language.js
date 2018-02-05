@@ -162,3 +162,18 @@ specialForms["fun"] = function(args, env) {
 topEnv["array"] = function () { return Array.prototype.slice.call(arguments, 0) };
 topEnv["length"] = function (array) { return array.length };
 topEnv["element"] = function(array, i)  {return array[i] };
+
+// specialForms["set"] made with help of the solution to the exercise
+specialForms["set"] = function(args, env) {
+	if (args.length != 2 || args[0].type != "word")
+    	throw new SyntaxError("Bad use of set");
+	var value = evaluate(args[1], env);
+  	var varName = args[0].name;
+	for (var scope = env; scope; scope = Object.getPrototypeOf(scope)) {
+    	if (Object.prototype.hasOwnProperty.call(scope, varName)) {
+		scope[varName] = value;
+		return value;
+		}
+	}
+	throw new ReferenceError("Variable must be defined to be changed, unknown var: " +varName);
+};
