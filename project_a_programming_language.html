@@ -1,0 +1,18 @@
+<!--    Project: A programming language has been made as a chapter in the book     
+        Exercises in the chapter include changes of some features in the project   
+                   Changes are contained in 11_language.js file                   -->
+
+<!doctype html>
+<script src="11_language.js"></script>
+
+<body><script>
+run("do(define(plusOne, fun(a, +(a, 1))),",
+    "   print(plusOne(10)))");
+
+run("do(define(pow, fun(base, exp,",
+    "     if(==(exp, 0),",
+    "        1,",
+    "        *(base, pow(base, -(exp, 1)))))),",
+    "   print(pow(2, 10)))");
+
+</script></body>
