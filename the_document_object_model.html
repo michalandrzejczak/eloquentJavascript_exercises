@@ -44,7 +44,35 @@ Object.keys(data[0]).forEach(function(key) {
 </script>
 <button onclick="document.body.appendChild(buildTable(MOUNTAINS))">Build a table!</button>
 <br/>
-<li><h3></h3></li>
+<li><h3>Elements by tag name</h3></li>
+<h1>Heading with a <span>span</span> element.</h1>
+<p>A paragraph with <span>one</span>, <span>two</span>
+  spans.</p>
+<script>
+function byTagName(node, tagName) {
+    tagName = tagName.toUpperCase();
+	  var found = [];
+	  
+	  function explore(node) {
+		  for (var i = 0; i < node.childNodes.length; i++) {
+		  var child = node.childNodes[i];
+		  if (child.nodeType == document.ELEMENT_NODE && child.nodeName == tagName)
+			  found.push(child);
+			else  explore(child);  
+		  }
+	  }
+	 explore(node);
+	  return found; 
+};
+
+  console.log(byTagName(document.body, "h1").length);
+  // → 1
+  console.log(byTagName(document.body, "span").length);
+  // → 3
+  var para = document.querySelector("p");
+  console.log(byTagName(para, "span").length);
+  // → 2
+</script>
 </ol>
 <div style="float: right">
 <input type="button" value="Refresh Page" onClick="window.location.reload()">
