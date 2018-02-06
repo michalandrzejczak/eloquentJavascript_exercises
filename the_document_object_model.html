@@ -1,0 +1,53 @@
+<html>
+<head>
+<script src = "MOUNTAINS.js"></script>
+<style>
+  table  { border-collapse: collapse; }
+  td, th { border: 1px solid black; padding: 3px 8px; }
+  th     { text-align: left; }
+</style>
+</head>
+<body style="font-family: calibri">
+<ol>
+<li><h3>Build a table</h3></li>
+<script>
+function Create(el) {return document.createElement(el)};
+	
+function buildTable(data) {
+	var table = document.createElement("table");
+document.body.appendChild(table);
+	var tr = new Create("tr");
+	table.appendChild(tr)
+Object.keys(data[0]).forEach(function(key) {
+	var th = new Create("th");
+	tr.appendChild(th);
+	var cell = document.createTextNode(key);
+	th.appendChild(cell)
+ });
+	MOUNTAINS.forEach( function(row) {
+		var tr2 = new Create("tr");
+		table.appendChild(tr2);
+		var td = new Create("td");
+		var cellName = document.createTextNode(row.name);
+		tr2.appendChild(td);
+		td.appendChild(cellName);
+		var td = new Create("td");
+		var cellHeight = document.createTextNode(row.height);
+		tr2.appendChild(td);
+		td.appendChild(cellHeight);
+		var td = new Create("td");
+		var cellCountry = document.createTextNode(row.country);
+		tr2.appendChild(td);
+		td.appendChild(cellCountry);
+	})
+};
+</script>
+<button onclick="document.body.appendChild(buildTable(MOUNTAINS))">Build a table!</button>
+<br/>
+<li><h3></h3></li>
+</ol>
+<div style="float: right">
+<input type="button" value="Refresh Page" onClick="window.location.reload()">
+</div>
+</body>
+</html> 
