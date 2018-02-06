@@ -73,6 +73,28 @@ function byTagName(node, tagName) {
   console.log(byTagName(para, "span").length);
   // → 2
 </script>
+<li><h3>The cat's hat</h3></li>
+<p style="text-align: center">
+<img src="img/cat.png" style="position: relative" id="cat">
+<img src="img/hat.png" style="position: relative" id="hat">
+</p>
+<script>
+  var cat = document.querySelector("#cat");
+  var hat = document.querySelector("#hat");
+  var angleCat = 0, angleHat = 0, lastTime = null;
+  function animate(time) {
+    if (lastTime != null)
+      angleCat += (time - lastTime) * 0.001;
+	  angleHat += (time - lastTime) * 0.001;
+    lastTime = time;
+    cat.style.top = (Math.sin(angleCat) * 50) + "px";
+    cat.style.left = (Math.cos(angleCat) * 200) + "px";
+	hat.style.top = (Math.sin(angleHat) * 50 -120) + "px";
+    hat.style.left = (Math.cos(angleHat) * 200 -70) + "px";
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+</script>
 </ol>
 <div style="float: right">
 <input type="button" value="Refresh Page" onClick="window.location.reload()">
