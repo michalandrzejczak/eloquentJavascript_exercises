@@ -1,0 +1,19 @@
+<html>
+<body style="font-family: calibri">
+<ol>
+<li><h3>Censored keyboard</h3></li>
+<input type="text">
+<script>
+  var field = document.querySelector("input");
+  // keyCodes: Q 81, W 87, X 88
+	field.addEventListener("keydown", function(event) {
+		if(event.keyCode == 81 || event.keyCode == 87 || event.keyCode == 88)
+			event.preventDefault();
+	});
+</script>
+</ol>
+<div style="float: right">
+<input type="button" value="Refresh Page" onClick="window.location.reload()">
+</div>
+</body>
+</html> 
