@@ -2,6 +2,7 @@
 <body style="font-family: calibri">
 <ol>
 <li><h3>Censored keyboard</h3></li>
+<p>Impossible to <strong>write</strong> letters 'Q', 'W' and 'X' below</p>
 <input type="text">
 <script>
   var field = document.querySelector("input");
@@ -11,6 +12,32 @@
 			event.preventDefault();
 	});
 </script>
+<li><h3>Mouse trail</h3></li>
+<p>Easy to spot a trace behind mouse cursor!</p>
+<style>
+  .trail { /* className for the trail elements */
+    position: absolute;
+    height: 6px; width: 6px;
+    border-radius: 3px;
+    background: teal;
+  }
+</style>
+<script>
+	var max = [];
+  	for (var i = 0; i < 10; i++) {
+		var trace = document.createElement("div");
+		trace.className = "trail";
+		document.body.appendChild(trace);
+		max.push(trace);
+	}
+	var current = 0
+	addEventListener("mousemove", function(event) {		
+    var dot = max[current];
+    dot.style.left = (event.pageX - 6) + "px";
+    dot.style.top = (event.pageY - 6) + "px";
+	current = (current+1) % max.length;
+	});
+	</script>
 </ol>
 <div style="float: right">
 <input type="button" value="Refresh Page" onClick="window.location.reload()">
