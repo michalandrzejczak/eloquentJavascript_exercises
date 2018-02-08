@@ -1,0 +1,22 @@
+<!doctype html>
+<!--      Project: A platform game has been made as a chapter in the book     
+      Exercises in the chapter include changes of some features in the project   
+                 Changes are contained in 15_game.js file                  
+      Files needed to load are contained in project_platform_game folder     -->
+<script src="project_platform_game/code/chapter/15_game.js"></script>
+<script src="project_platform_game/code/game_levels.js"></script>
+
+<link rel="stylesheet" href="project_platform_game/css/game.css">
+
+<body style="font-family: Calibri">
+	<span>
+		Instructions:<br/>
+		Use arrows to move.<br/>
+		Collect all coins to complete a level.<br/>
+		Avoid red lava to survive<br/>
+		You've got 3 lives. Good luck!<br/>
+	</span>
+  <script>
+    runGame(GAME_LEVELS, DOMDisplay);
+  </script>
+</body>
