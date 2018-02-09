@@ -1,0 +1,68 @@
+<html>
+<body style="font-family: Calibri">
+<ol>
+<li><h3>Shapes</h3></li>	
+<canvas width="350" height="200"></canvas>
+<script>  
+var cx = document.querySelector("canvas").getContext("2d");
+function trapeze(x, y) {
+   	cx.beginPath();
+  	cx.moveTo(x, y);
+  	cx.lineTo(x+50, y);
+  	cx.lineTo(x+70, y+40);
+  	cx.lineTo(x-20, y+40);
+  	cx.closePath();
+  	cx.stroke();
+}
+trapeze(20,10);
+	cx.save();
+function diamond(x, y, a) {
+  	cx.translate(x, y);
+  	cx.rotate(0.25*Math.PI);
+  	cx.fillStyle = "red";
+  	cx.fillRect(0, 0, a, a);
+}
+diamond(150, 0, 50);
+cx.restore();
+	
+function zigzag(x, y, n) {
+	cx.beginPath();
+	cx.moveTo(x, y);
+	for (var i = 0; i < n; i++) {
+		cx.lineTo(x+50, y+5+i*10);
+		cx.lineTo(x, y+10+i*10);
+	}
+	cx.stroke();
+}
+zigzag(10, 90, 8);
+	
+function spiral(x, y) {
+	var radius = 50, xCenter = x + radius, yCenter = y + radius;
+    cx.beginPath();
+    cx.moveTo(xCenter, yCenter);
+    for (var i = 0; i < 100; i++) {
+		var angle = i * Math.PI / 15;
+      	var dist = radius * i / 100;
+      	cx.lineTo(xCenter + Math.cos(angle) * dist, yCenter + Math.sin(angle) * dist);
+    }
+   	cx.stroke();
+}
+spiral(100, 80);
+	
+function star(x, y) {
+	var radius = 50, xCenter = x + radius, yCenter = y + radius;
+	cx.beginPath();
+    cx.moveTo(xCenter + radius, yCenter);
+    for (var i = 1; i < 9; i++) {
+        var angle = i * Math.PI / 4;
+        cx.quadraticCurveTo(xCenter, yCenter, xCenter + Math.cos(angle) * radius, yCenter + Math.sin(angle) * radius);
+    }
+    cx.fillStyle = "#ffc700";
+    cx.fill();
+}
+star(220, 30);
+</script>
+</ol>
+</body>
+<input type="button" value="Refresh Page" onClick="window.location.reload()">
+</html> 
