@@ -2,9 +2,9 @@
 <body style="font-family: Calibri">
 <ol>
 <li><h3>Shapes</h3></li>	
-<canvas width="350" height="200"></canvas>
+<canvas width="350" height="200" id="1"></canvas>
 <script>  
-var cx = document.querySelector("canvas").getContext("2d");
+var cx = document.getElementById("1").getContext("2d");
 function trapeze(x, y) {
    	cx.beginPath();
   	cx.moveTo(x, y);
@@ -62,6 +62,45 @@ function star(x, y) {
 }
 star(220, 30);
 </script>
+<li><h3>The pie chart</h3></li>
+ <canvas width="600" height="300" id="2"></canvas>
+<script>
+  var results = [
+  {name: "Satisfied", count: 1043, color: "lightblue"},
+  {name: "Neutral", count: 563, color: "lightgreen"},
+  {name: "Unsatisfied", count: 510, color: "pink"},
+  {name: "No comment", count: 175, color: "silver"}
+];  
+  var cx = document.getElementById("2").getContext("2d");
+  var total = results.reduce(function(sum, choice) {
+    return sum + choice.count;
+  }, 0);
+
+  var currentAngle = -0.5 * Math.PI;
+  var centerX = 300, centerY = 150, radius = 100;
+  // Add code to draw the slice labels in this loop.
+  results.forEach(function(result) {
+    var sliceAngle = (result.count / total) * 2 * Math.PI;
+    cx.beginPath();
+    cx.arc(centerX, centerY, radius,
+    currentAngle, currentAngle + sliceAngle);
+      
+    var middleAngle = currentAngle + 0.5 * sliceAngle;
+    var textLocX = Math.cos(middleAngle) * (radius+10) + centerX;
+    var textLocY = Math.sin(middleAngle) * (radius+10) + centerY;
+    if (Math.cos(middleAngle) > 0)
+      cx.textAlign = "left";
+    else
+      cx.textAlign = "right";
+    cx.fillStyle = "black";
+    cx.fillText(result.name, textLocX, textLocY);
+      
+    currentAngle += sliceAngle;
+    cx.lineTo(centerX, centerY);
+    cx.fillStyle = result.color;
+    cx.fill();
+  });
+</script>   
 </ol>
 </body>
 <input type="button" value="Refresh Page" onClick="window.location.reload()">
