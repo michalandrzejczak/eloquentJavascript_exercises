@@ -1,0 +1,35 @@
+<html>
+<body style="font-family: Calibri">
+<ol>
+<li><h3>Content negotiation</h3></li>
+    <p style="font-style: italic">Sent a request GET to http://eloquentjavascript.net/author with text/html media type</p>
+    <div id ="1.1"></div>
+<script>  
+function get(url) {
+  return new Promise(function(succeed, fail) {
+    var req = new XMLHttpRequest();
+    req.open("GET", url, true);
+    req.setRequestHeader("accept", "text/html");
+    req.addEventListener("load", function() {
+      if (req.status < 400)
+        succeed(req.responseText);
+      else
+        fail(new Error("Request failed: " + req.statusText));
+    });
+    req.addEventListener("error", function() {
+      fail(new Error("Network error"));
+    });
+    req.send(null);
+  });
+}
+
+get("http://eloquentjavascript.net/author").then(function(text) {
+  document.getElementById("1.1").appendChild(document.createTextNode(text));
+}, function(error) {
+  document.getElementById("1.1").appendChild(document.createTextNode("Failed to fetch http://eloquentjavascript.net/author " + error));
+});   
+</script>   
+</ol>
+</body>
+<input type="button" value="Refresh Page" onClick="window.location.reload()">
+</html> 
