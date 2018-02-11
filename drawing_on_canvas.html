@@ -100,7 +100,37 @@ star(220, 30);
     cx.fillStyle = result.color;
     cx.fill();
   });
-</script>   
+</script>  
+<li><h3>A bouncing ball</h3></li>
+<canvas width="300" height="300" id ="3"></canvas>
+<script>
+  var cx = document.getElementById("3").getContext("2d");
+  var lastTime = null;
+  function frame(time) {
+    if (lastTime != null)
+      updateAnimation(Math.min(100, time - lastTime) / 750);
+    lastTime = time;
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+    
+  var x = 100, y = 200, radius = 20, speedX = 92, speedY = 73;
+    
+  function updateAnimation(step) {
+    cx.clearRect(0, 0, 300, 300); 
+    cx.strokeRect(0, 0, 300, 300);
+    
+    x += step * speedX;
+    y += step * speedY;
+    if (x < radius || x > 300 - radius)
+      speedX = -speedX;
+    if (y < radius || y > 300 - radius)
+      speedY = -speedY;
+    cx.fillStyle = "blue";
+    cx.beginPath();
+    cx.arc(x, y, radius, 0, 2*Math.PI);
+    cx.fill(); }
+</script>    
 </ol>
 </body>
 <input type="button" value="Refresh Page" onClick="window.location.reload()">
