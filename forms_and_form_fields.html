@@ -20,6 +20,41 @@ button.addEventListener("click", function() {
     }
 });
 </script>
+
+<li><h3>Autocompletion</h3></li>
+<input type="text" id="field" style="width: 230">
+<div id="suggestions" style="cursor: pointer"></div>
+
+<script>
+var terms = [];
+for (var name in window)
+    terms.push(name);
+
+var textfield = document.querySelector("#field"), suggestions = document.querySelector("#suggestions");
+
+textfield.addEventListener("input", function() {
+    var match = terms.filter(function(input) {
+        return input.indexOf(textfield.value) == 0;
+    });
+    suggestions.textContent = "";
+    match.slice(0, 10).forEach(function(term) {
+        var node = document.createElement("div");
+        // Style of the new nodes //
+            node.style.backgroundColor = "white";
+            node.style.width = "228" + "px";
+            node.style.border = "solid";
+            node.style.borderWidth = "1" + "px";
+        // End of style //
+        node.textContent = term;
+        node.addEventListener("click", function() {
+            textfield.value = term;
+            suggestions.textContent = "";
+        });
+    suggestions.appendChild(node);
+    });
+});
+    
+</script>
 </ol>
 </body>
 <input type="button" value="Refresh Page" onClick="window.location.reload()">
