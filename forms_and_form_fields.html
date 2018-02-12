@@ -1,0 +1,26 @@
+<html>
+<body style="font-family: Calibri">
+<ol>
+<li><h3>A javascript workbench</h3></li>
+<textarea id="code" style="width: 400; height:100">document.body.style.background = "rgb(236, 242, 213)";
+return "Write something!";</textarea>
+<button id="button">Run</button>
+<pre id="output"></pre>
+
+<script>
+var button = document.querySelector("#button");
+button.addEventListener("click", function() {
+    try {
+    var code = document.querySelector("#code").value;
+    var output = document.querySelector("#output");
+        var compute = new Function(code)();
+        output.textContent = String(compute);
+    } catch (e) {
+        output.textContent = "Error:" + e;
+    }
+});
+</script>
+</ol>
+</body>
+<input type="button" value="Refresh Page" onClick="window.location.reload()">
+</html> 
