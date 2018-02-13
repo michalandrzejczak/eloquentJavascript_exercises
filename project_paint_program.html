@@ -1,0 +1,17 @@
+<!doctype html>
+<script src="project_paint_program/code/chapter/19_paint.js"></script>
+<script> // Exercise 1. Rectangles is contained in this script
+    tools.Rectangle = function(event, cx) {
+        var pos = relativePos(event, cx.canvas);
+        trackDrag(function(event) {
+            var pos2 = relativePos(event, cx.canvas);
+            cx.fillRect(Math.min(pos.x, pos2.x), Math.min(pos.y, pos2.y), Math.abs(pos2.x-pos.x), Math.abs(pos2.y-pos.y));
+        });
+    };
+</script>
+
+<link rel="stylesheet" href="project_paint_program/css/paint.css">
+
+<body>
+  <script>createPaint(document.body);</script>
+</body>
