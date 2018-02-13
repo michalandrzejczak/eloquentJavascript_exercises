@@ -1,6 +1,8 @@
 <!doctype html>
 <script src="project_paint_program/code/chapter/19_paint.js"></script>
-<script> // Exercise 1. Rectangles is contained in this script
+
+<!-- Exercise 1. Rectangles is contained in this script -->
+<script> 
     tools.Rectangle = function(event, cx) {
         var pos = relativePos(event, cx.canvas);
         trackDrag(function(event) {
@@ -10,6 +12,31 @@
     };
 </script>
 
+<!-- Exercise 2. Color Picker is contained in this script -->
+<script> 
+ function pixelAt(cx, x, y) {
+    var data = cx.getImageData(x, y, 1, 1);
+    var RGBAarray = data.data;
+    var RGBstring = "rgb(" + data.data[0] + ", " + data.data[1] + ", " + data.data[2] + ")";
+  return RGBstring  // returns string "rgb(R, G, B)" 
+}
+ tools["Pick color"] = function(event, cx) {
+    var pos = relativePos(event, cx.canvas);
+     try {
+         var pickedColor = pixelAt(cx, pos.x, pos.y);
+         console.log(pickedColor);
+     } catch (e) {
+         if (e instanceof SecurityError) {
+             alert("Can't pick color from the image");
+             return;
+         } else {
+             throw e;
+         }
+     }
+    cx.fillStyle = pickedColor;
+    cx.strokeStyle = pickedColor;
+  };
+</script>
 <link rel="stylesheet" href="project_paint_program/css/paint.css">
 
 <body>
