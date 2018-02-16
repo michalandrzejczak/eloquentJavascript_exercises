@@ -18,7 +18,7 @@
     var data = cx.getImageData(x, y, 1, 1);
     var RGBAarray = data.data;
     var RGBstring = "rgb(" + data.data[0] + ", " + data.data[1] + ", " + data.data[2] + ")";
-  return RGBstring  // returns string "rgb(R, G, B)" 
+  return RGBstring  // returns string : "rgb(R, G, B)" 
 }
  tools["Pick color"] = function(event, cx) {
     var pos = relativePos(event, cx.canvas);
