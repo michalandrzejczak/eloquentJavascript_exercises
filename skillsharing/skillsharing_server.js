@@ -137,7 +137,24 @@ function waitForChanges(since, response) {
     }
   }, 90 * 1000);
 }
+// start of Ex.1 code //
+var fs = require("fs");
 
+var talks = loadTalks();
+
+function loadTalks() {
+  var result = Object.create(null), json;
+  try {
+    json = JSON.parse(fs.readFileSync("./talks.json", "utf8"));
+  } catch (e) {
+    json = {};
+  }
+  for (var title in json)
+    result[title] = json[title];
+  return result;
+}
+
+// end of Ex.1 code //
 var changes = [];
 
 function registerChange(title) {
@@ -146,6 +163,9 @@ function registerChange(title) {
     sendTalks(getChangedTalks(waiter.since), waiter.response);
   });
   waiting = [];
+    
+  fs.writeFile("./talks.json", JSON.stringify(talks)); // added as an Ex.1 - making possibility of writing talks object as JSON file with every registeret change 
+
 }
 
 function getChangedTalks(since) {
