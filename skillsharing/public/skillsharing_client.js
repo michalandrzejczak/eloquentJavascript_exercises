@@ -44,8 +44,19 @@ function displayTalks(talks) {
       }
     } else {
       var node = drawTalk(talk);
-      if (shown)
+        
+// Exercise 2. - solution of Author     
+        
+      if (shown) {  
+        var textField = shown.querySelector("input");
+        var hasFocus = document.activeElement == textField;
+        var value = textField.value;
         talkDiv.replaceChild(node, shown);
+        var newTextField = node.querySelector("input");
+        newTextField.value = value;
+        if (hasFocus) newTextField.focus();
+      } 
+// End of changes brought with exercise 2.
       else
         talkDiv.appendChild(node);
       shownTalks[talk.title] = node;
